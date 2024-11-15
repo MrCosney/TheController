@@ -11,7 +11,7 @@ final class SecondaryViewController: UIViewController {
     // MARK: - Constants
     
     private enum Constants {
-        static let height: Double = 300
+        static let initialContentSize: CGSize = CGSize(width: 300, height: 300)
         static let heightCompact: Double = 150
         static let animateDuration: TimeInterval = 0.45
     }
@@ -40,8 +40,7 @@ extension SecondaryViewController: SecondaryCustomViewDelegate {
     }
     
     func handleHeightAdjustment(isCompact: Bool) {
-        let targetHeight = isCompact ? Constants.heightCompact : Constants.height
-        
+        let targetHeight = isCompact ? Constants.heightCompact : Constants.initialContentSize.height
         UIView.animate(withDuration: Constants.animateDuration) {
             self.preferredContentSize.height = targetHeight
         }
@@ -52,6 +51,6 @@ extension SecondaryViewController: SecondaryCustomViewDelegate {
 
 private extension SecondaryViewController {
     func initialSetup() {
-        preferredContentSize = CGSize(width: Constants.height, height: Constants.height)
+        preferredContentSize = Constants.initialContentSize
     }
 }
